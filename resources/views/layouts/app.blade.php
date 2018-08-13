@@ -9,7 +9,7 @@
         <link rel="stylesheet" href="{{asset('css/app.css')}}">
 
          {{--  @yield('pageTitle') followed by the name of the app --}}
-        <title>@yield('pageTitle') Rev</title>
+        <title>@yield('pageTitle') Aston Events</title>
     </head>
     <body>
       {{--include navigation bar file--}}

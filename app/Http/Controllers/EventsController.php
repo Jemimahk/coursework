@@ -5,10 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 //import model so you can use any of the model functions
 
-use App\Post;
+use App\Event;
 use DB;
 
-class PostsController extends Controller
+class EventsController extends Controller
 {
   /**
   * Display a listing of the resource.
@@ -28,9 +28,9 @@ class PostsController extends Controller
   public function index()
   {
     //paginate(num of table items to be listed eeg.evnt category before) per page
-    $posts = Post::orderBy('title','desc')->paginate(10);
+    $events = Event::orderBy('created_at','desc')->paginate(10);
     //load the view, pass $post using with cmd
-    return view('posts.index')->with('posts',$posts);
+    return view('events.index')->with('events',$events);
   }
 
   /**
@@ -41,7 +41,7 @@ class PostsController extends Controller
   public function create()
   {
     //load a view from the posts folder in in a template called created
-    return view('posts.create');
+    return view('events.create');
   }
 
   /**
@@ -52,7 +52,14 @@ class PostsController extends Controller
   */
   public function store(Request $request)
   {
-    //
+    //validation, pass in the request that has been passed to the store function then rules
+    // change title to event and body to description, variables must match table
+    $this->validate($request,[
+      'title' => 'required',
+      'body' =>'required'
+    ]);
+
+    return 123;
   }
 
   /**
@@ -64,8 +71,8 @@ class PostsController extends Controller
   public function show($id)
   {
     //  return Post::find($id); every page is returned
-    $post = Post::find($id);
-    return view('posts.show')->with('post',$post);
+    $event = Event::find($id);
+    return view('events.show')->with('event',$event);
   }
 
   /**

@@ -37,7 +37,7 @@ Route::get('/about', 'PagesController@about');
 Route::get('/services', 'PagesController@services');
 
 //Create all the routes needed for posts, if a get request is make to posts.name it returns the function
-Route::resource('posts','PostsController');
+Route::resource('events','EventsController');
 
 /*
 Route::get('/users', function () {
