@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 use App\{Event, Category};
 use DB;
-use App\Http\Controllers\Auth;
+use Illuminate\Support\Facades\Auth;
 
 class EventsController extends Controller
 {
