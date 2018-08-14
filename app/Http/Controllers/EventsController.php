@@ -40,8 +40,9 @@ class EventsController extends Controller
   */
   public function create()
   {
+    $categories = Category::all();
     //load a view from the posts folder in in a template called created
-    return view('events.create');
+    return view('events.create')->with('categories', $categories);
   }
 
   /**
@@ -54,14 +55,11 @@ class EventsController extends Controller
   {
     //validation, pass in the request that has been passed to the store function then rules
     // change title to event and body to description, variables must match table
-
     $this->validate($request, [
-      'category_id' => 'required',
+      'category_id' => 'required|numeric',
       'name' => 'required',
       'description' =>'required',
-      'venue' => 'required',
-      'created_by' =>'required'
-
+      'venue' => 'required'
     ]);
     //create Event
     $event = new Event;
@@ -69,7 +67,7 @@ class EventsController extends Controller
     $event->name = $request->input('name');  // return name form input value
     $event->description = $request->input('description');
     $event->venue = $request->input('venue');
-    $event->created_by = Auth::id(); // user id
+    $event->created_by = Auth::id(); // user id - the created_by can be passed via Request, but will leave user vulnerable to XSS attacks 
     $event->created_at = time();
     $event->updated_at = time();
     $event->save(); // save input

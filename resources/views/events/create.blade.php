@@ -9,7 +9,11 @@
   <div class="form-group">
     {{--add label and textfield--}}
     {{form::label('category_id', 'Category Id')}}
-    {{form::text('category_id', '', ['class' => 'form-control', 'placeholder' =>' Enter category id associated with your event'])}}
+    <select class="form-control" name="category_id">
+      @foreach($categories as $category)
+      <option value="{{$category->id}}">{{$category->name}}</option>
+      @endforeach
+    </select>
 </div>
 
       <div class="form-group">
@@ -32,8 +36,8 @@
 
 <div class="form-group">
   {{--add labels--}}
-  {{form::label('created_by', 'Created by')}}
-  {{form::text('created_by', '', ['class' => 'form-control', 'placeholder' =>'Enter your name here'])}}
+  <!-- the user id field is hidden -->
+  {{form::hidden('created_by', Auth::id(), ['class' => 'form-control', 'placeholder' =>'Enter your name here'])}}
 </div>
   {{--submit event form, when submitted it should make a post request to store--}}
   {{Form::submit('Submit form', ['class'=>'btn btn-primary'])}}
