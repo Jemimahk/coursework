@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 use App\{Event, Category};
 use DB;
+use App\Http\Controllers\Auth;
 
 class EventsController extends Controller
 {
@@ -67,7 +68,7 @@ class EventsController extends Controller
     $event->name = $request->input('name');  // return name form input value
     $event->description = $request->input('description');
     $event->venue = $request->input('venue');
-    $event->created_by = Auth::id(); // user id - the created_by can be passed via Request, but will leave user vulnerable to XSS attacks 
+    $event->created_by = Auth::id(); // user id - the created_by can be passed via Request, but will leave user vulnerable to XSS attacks
     $event->created_at = time();
     $event->updated_at = time();
     $event->save(); // save input
