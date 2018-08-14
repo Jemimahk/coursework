@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 //import model so you can use any of the model functions
 
-use App\Event;
+use App\{Event, Category};
 use DB;
 
 class EventsController extends Controller
@@ -54,12 +54,28 @@ class EventsController extends Controller
   {
     //validation, pass in the request that has been passed to the store function then rules
     // change title to event and body to description, variables must match table
-    $this->validate($request,[
-      'title' => 'required',
-      'body' =>'required'
-    ]);
 
-    return 123;
+    $this->validate($request, [
+      'category_id' => 'required',
+      'name' => 'required',
+      'description' =>'required',
+      'venue' => 'required',
+      'created_by' =>'required'
+
+    ]);
+    //create Event
+    $event = new Event;
+    $event->category_id = $request->input('category_id');
+    $event->name = $request->input('name');  // return name form input value
+    $event->description = $request->input('description');
+    $event->venue = $request->input('venue');
+    $event->created_by = Auth::id(); // user id
+    $event->created_at = time();
+    $event->updated_at = time();
+    $event->save(); // save input
+
+     //redirect submition and return a sucess message
+    return redirect('/events')->with('sucess',' Event created');
   }
 
   /**
@@ -83,7 +99,8 @@ class EventsController extends Controller
   */
   public function edit($id)
   {
-    //
+        $event = Event::find($id);
+        return view('events.edit')->with('event',$event);
   }
 
   /**
@@ -95,7 +112,28 @@ class EventsController extends Controller
   */
   public function update(Request $request, $id)
   {
-    //
+    // copied from strore, when submit edit is pressed return $this->
+    $this->validate($request, [
+      'category_id' => 'required',
+      'name' => 'required',
+      'description' =>'required',
+      'venue' => 'required',
+
+
+    ]);
+    //find an Event
+    $event = Event::find($id);
+    $event->category_id = $request->input('category_id');
+    $event->name = $request->input('name');  // return name form input value
+    $event->description = $request->input('description');
+    $event->venue = $request->input('venue');
+    $event->created_by = $request->input('created_by'); // user id
+    $event->created_at = time();
+    $event->updated_at = time();
+    $event->save(); // save input
+
+     //redirect submition and return a sucess message
+    return redirect('/events')->with('sucess',' Event has been successfully updated');
   }
 
   /**
@@ -106,7 +144,12 @@ class EventsController extends Controller
   */
   public function destroy($id)
   {
-    //
+
+    //find the event for the given id and delete it then go back to events page
+    $event = Event::find($id);
+    $event->delete();
+
+      return redirect('/events')->with('sucess',' Event has been successfully deleted');
   }
 
 }

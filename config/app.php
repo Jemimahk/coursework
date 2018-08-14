@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'Aston Events'),
 
     /*
     |--------------------------------------------------------------------------
@@ -147,6 +147,7 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
+        Unisharp\Ckeditor\ServiceProvider::class,
 
         /*
          * Package Service Providers...

@@ -35,6 +35,11 @@ Route::get('/about',function(){
 Route::get('/', 'PagesController@index');
 Route::get('/about', 'PagesController@about');
 Route::get('/services', 'PagesController@services');
+Route::get('/login', function() {
+ return view('login.index');
+});
+
+
 
 //Create all the routes needed for posts, if a get request is make to posts.name it returns the function
 Route::resource('events','EventsController');
@@ -44,3 +49,7 @@ Route::get('/users', function () {
   return App\users::all();
 });
 */
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
