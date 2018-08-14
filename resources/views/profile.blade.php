@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Dashboard</div>
+                <div class="card-header"> Your Profile</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -13,8 +13,9 @@
                             {{ session('status') }}
                         </div>
                     @endif
+                    <p class="font-weight-light">Welcome to your Aston organiser user profile </p>
+                    <a href="/events/create" class="btn btn-outline-secondary">  Create Event</a>
 
-                    You are logged in!
                 </div>
             </div>
         </div>

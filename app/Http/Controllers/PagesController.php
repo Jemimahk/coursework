@@ -11,28 +11,11 @@ class PagesController extends Controller
       index.blade.php
   */
     public function index(){
-      $title = 'welcome to Laravel!';
+      $title = 'welcome to Aston Events!';
 
           //return view('pages.index', compact('title')); [pass a value into balde]
           // add a title to the page using with bu passing in variable name for the fuction and the actually variable
       return view('pages.index')->with('title',$title);
     }
 
-// return about page
-
-    public function about(){
-      // dynamic title  but echo can be used too
-        $title = 'About Us';
-      return view('pages.about')->with('title',$title);
-    }
-
-    public function services(){
-      $data = array(
-        'title' => 'Services',
-        // add another array called services which is added into the data array
-        'services' => ['Sport', 'Culture', 'Other']
-
-      );
-      return view('pages.services')->with($data);
-    }
 }

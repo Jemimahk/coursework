@@ -16,15 +16,10 @@ class EventsController extends Controller
   *
   * @return \Illuminate\Http\Response
   * Return functions that can be run using Eloquent:
-  * 1.return all the data for the table(posts) in this model  $posts = Post::all();
+  * 1.return all the data for the table(event) in this model  $event = Post::all();
   * 2.  //order by title in descending order and then call get method to return all from desc is most recent
-  * $posts = Post::orderBy('title','desc')->get();
-  * 3. get the post by title and 'return' it will return post two  return  $post = Post::where('title', 'Post Two')->get();
-  * Using SQL
-  *  //order by title in descending order and then call get method to return all from desc is most recent
-  *  // take one, returns only one post
-  *$posts = Post::orderBy('title','desc')->take(1)->get();
-  * 1. //Return Method that can be run using SQL $posts = DB::select('SELECT *FROM posts');
+  * $event = Post::orderBy('title','desc')->get();
+  *  Method that can be run using SQL $event = DB::select('SELECT *FROM event');
   */
   public function index()
   {
@@ -42,7 +37,7 @@ class EventsController extends Controller
   public function create()
   {
     $categories = Category::all();
-    //load a view from the posts folder in in a template called created
+    //load a view from the event folder in in a template called created
     return view('events.create')->with('categories', $categories);
   }
 
@@ -152,19 +147,3 @@ class EventsController extends Controller
   }
 
 }
-/*
-//list all the posts / post table data
-index
-//represents the create form which will submit to the function store
-create
-// function that submits the form data to the model then data base
-store
-//edit form which submits to update
-edit
-// update formm
-update
-// show a single post
-show
-//delete form
-destroy
-*/

@@ -7,18 +7,19 @@
       <div class="row">
         <div class="col-md-12">
           <h1>Events</h1>
-          {{--loop through returned array of posts--}}
+          {{--loop through returned array of events--}}
           @if(count($events) > 0)
             @foreach ($events as $event)
-              <div class="well">{{--/posts/{{$post->id}}  go to posts page with the id, go to contoller to show something n the page--}}
+              <div class="well">{{--/events/{{$event->id}}  go to events page with the id, go to contoller to show something n the page--}}
                 <h3><a href="/events/{{$event->id}}">{{$event->name}}</a></h3>
                 <p class="text-muted">{{$event->category->name}}</p>
-                <p>{{ $event->description }}</p>
+                <p class="font-weight-normal">{{ $event->description }}</p>
+              <!--  <p class="font-weight-normal">{{$event->venue}}</p> -->
                 <small> Written on {{$event->created_at}}</small>
               </div>
               <hr>
             @endforeach
-            {{--add pagination to posts table--}}
+            {{--add pagination to events table--}}
             {{$events->links()}}
           @else
             <p> No Events found</p>

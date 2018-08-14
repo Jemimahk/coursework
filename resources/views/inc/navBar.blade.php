@@ -11,7 +11,7 @@
             <!-- Left Side Of Navbar -->
             <ul class="navbar-nav mr-auto">
               <li class="nav-item">
-                <a class="nav-link" href="{{ url('/events') }}">Events</a>
+                <a class="nav-link " href="{{ url('/events') }}">Events</a>
               </li>
             </ul>
 
@@ -35,8 +35,11 @@
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                             {{ Auth::user()->name }} <span class="caret"></span>
                         </a>
-
+                        <!-- Drop down function used as a meni for user, contains logout and profile-->
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+
+                              <a class="dropdown-item" href="/profile">Profile</a>
+
                             <a class="dropdown-item" href="/logout"
                                onclick="event.preventDefault();
                                              document.getElementById('logout-form').submit();">

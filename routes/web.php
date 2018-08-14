@@ -25,16 +25,10 @@ Route::get('/users/{id}/{name}',function($id, $name){
   return 'This is user '.$name. ' with the id '.$id;
 });
 
-// handle  get request for about page
-Route::get('/about',function(){
-  return view('pages.about');
-});
 
 */
 // instead of a function/ closer put controller and reuired method in quotes
 Route::get('/', 'PagesController@index');
-Route::get('/about', 'PagesController@about');
-Route::get('/services', 'PagesController@services');
 Route::get('/login', function() {
  return view('login.index');
 });

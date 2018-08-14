@@ -5,7 +5,7 @@
    {{--Link that takes you to the /posts page--}}
   <a href="/events" class="btn btn-default">Go Back</a>
   {{--Return post title and parse html!--}}
-  <h1>{{$event->name}}</h1>
+  <h1 align="center">{{$event->name}}</h1>
   <p class="text-muted">{{ $event->category->name }}</p>
   <div>
     {{--returns the post tbl body column data, this can be my description--}}
